@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>David Castro</title>
+<meta name="description" content="David Castro is a Computer Science and Statistics senior at UTRGV and the founder of Castro Solutions LLC in Edinburg, TX.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Geist:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a dark resume sheet. A poster-scale name opens it, then ruled rows
+   (about, work, skills) read like a spec sheet, ending on a cobalt contact band. */
+:root {
+  color-scheme: dark;
+  --bg: #0b0c0e;
+  --raise: #141619;
+  --glow: #3a3e44;
+  --line: #2a2d31;
+  --line-strong: #44484d;
+  --muted: #8f959c;
+  --soft: #c6cacf;
+  --fg: #f3f4f5;
+  --accent: #2c56e0;      /* fills: contact band, primary button */
+  --accent-ink: #7d9dff;  /* accent used as text or thin marks on the dark ground */
+  --on-accent: #ffffff;
+  --display: "Big Shoulders Display", Impact, "Arial Narrow", sans-serif;
+  --body: "Geist", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+  --gutter: clamp(16px, 4vw, 56px);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 400 17px/1.6 var(--body); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--bg); }
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+h1, h2, h3, p, dl, dd, ul { margin: 0; padding: 0; }
+ul { list-style: none; }
+:focus-visible { outline: 2px solid var(--accent-ink); outline-offset: 3px; }
+.wrap { max-width: 1440px; margin-inline: auto; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.label { font: 500 12px/1.4 var(--mono); letter-spacing: .09em; text-transform: uppercase; color: var(--muted); }
+.label b { color: var(--accent-ink); font-weight: 500; }
+
+/* Nav */
+.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+.nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 60px; }
+.mark { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font: 500 12px/1 var(--mono); letter-spacing: .09em; text-transform: uppercase; }
+.mark span { display: grid; place-items: center; width: 32px; height: 32px; border: 1.5px solid var(--fg); border-radius: 50%; font: 900 15px/1 var(--display); letter-spacing: .02em; }
+.nav ul { display: flex; gap: clamp(14px, 2.6vw, 34px); }
+.nav li a { display: block; padding-block: 10px; text-decoration: none; font: 500 12px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--soft); }
+.nav li a i { font-style: normal; color: var(--muted); margin-right: 6px; }
+.nav li a:hover { color: var(--fg); }
+
+/* Hero */
+.hero { border-bottom: 1px solid var(--line); }
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(28px, 4vw, 64px); align-items: end; padding-block: clamp(36px, 6vw, 80px); }
+.hero h1 { font: 900 clamp(86px, 15.5vw, 236px)/.82 var(--display); letter-spacing: -.01em; text-transform: uppercase; margin-block: 18px clamp(28px, 4vw, 48px); }
+.hero h1 span { display: block; }
+.hero h1 span + span { color: transparent; -webkit-text-stroke: 2px var(--fg); }
+.tagline { font-size: clamp(19px, 1.8vw, 24px); line-height: 1.4; color: var(--soft); max-width: 30ch; font-weight: 300; }
+.hero-meta { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 32px; margin-top: clamp(28px, 4vw, 44px); padding-top: 22px; border-top: 1px solid var(--line); }
+.hero-meta dd { font-size: 18px; margin-top: 4px; }
+.hero-meta dd a { text-decoration: none; border-bottom: 1px solid var(--accent-ink); }
+.hero-meta .coords { display: block; font: 400 12px/1.4 var(--mono); color: var(--muted); margin-top: 4px; font-variant-numeric: tabular-nums; }
+.pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+.pill { display: inline-flex; align-items: center; gap: 8px; min-height: 42px; padding: 0 15px; border: 1px solid var(--line-strong); border-radius: 999px; text-decoration: none; font: 500 12px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; transition: background .15s, color .15s, border-color .15s; }
+.pill:hover { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.pill.primary { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.pill.primary:hover { background: var(--fg); border-color: var(--fg); color: var(--bg); }
+.portrait { margin: 0; position: relative; }
+.portrait img {
+  width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 100%;
+  /* the cutout is transparent; this soft glow sits behind the head so the dark shirt keeps its outline */
+  background: radial-gradient(ellipse 58% 52% at 50% 38%, var(--glow), var(--raise) 100%);
+  border-bottom: 1px solid var(--line);
+}
+.portrait figcaption { display: flex; justify-content: space-between; gap: 12px; padding-top: 10px; font: 400 12px/1.4 var(--mono); color: var(--muted); letter-spacing: .06em; text-transform: uppercase; font-variant-numeric: tabular-nums; }
+.portrait::before { content: ""; position: absolute; inset: 0 0 auto auto; width: 18%; height: 6px; background: var(--accent-ink); }
+
+/* Section shared */
+.band { padding-block: clamp(64px, 9vw, 128px); border-bottom: 1px solid var(--line); }
+.sec-head { display: grid; grid-template-columns: minmax(170px, 3fr) minmax(0, 9fr); gap: 16px 40px; margin-bottom: clamp(32px, 5vw, 64px); align-items: end; }
+.sec-head h2 { font: 900 clamp(56px, 9vw, 132px)/.86 var(--display); text-transform: uppercase; letter-spacing: -.005em; }
+.sec-head .count { justify-self: end; }
+
+/* About */
+.about-grid { display: grid; grid-template-columns: minmax(170px, 3fr) minmax(0, 9fr); gap: 16px 40px; }
+.bio { font-size: clamp(24px, 2.8vw, 38px); line-height: 1.3; font-weight: 300; letter-spacing: -.015em; max-width: 34ch; text-wrap: pretty; }
+.bio strong { font-weight: 500; }
+.facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: clamp(36px, 5vw, 64px); border-top: 1px solid var(--line); }
+.facts div { padding: 18px 20px 0 0; }
+.facts dd { margin-top: 6px; font-size: 18px; }
+
+/* Experience */
+.jobs { border-top: 1px solid var(--line-strong); }
+.job { display: grid; grid-template-columns: minmax(170px, 3fr) minmax(0, 9fr); gap: 16px 40px; padding-block: clamp(26px, 3.5vw, 44px); border-bottom: 1px solid var(--line); }
+.job-when { display: grid; gap: 10px; align-content: start; }
+.tag { justify-self: start; padding: 4px 9px; border: 1px solid var(--line-strong); font: 500 11px/1.3 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--soft); }
+.job h3 { font: 700 clamp(32px, 4vw, 54px)/1 var(--display); text-transform: uppercase; letter-spacing: .005em; }
+.job .org { margin-top: 10px; color: var(--soft); }
+.job .org a { text-decoration: none; border-bottom: 1px solid var(--accent-ink); }
+.job ul { display: grid; gap: 10px; margin-top: 20px; max-width: 64ch; }
+.job li { position: relative; padding-left: 22px; color: var(--soft); }
+.job li::before { content: ""; position: absolute; left: 0; top: .72em; width: 10px; height: 1.5px; background: var(--accent-ink); }
+.now { color: var(--fg); }
+.now::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--accent-ink); margin-right: 8px; vertical-align: 1px; }
+
+/* Skills */
+.tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: clamp(28px, 4vw, 48px); }
+.tab { appearance: none; display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 16px; border: 1px solid var(--line-strong); border-radius: 999px; background: none; color: var(--soft); cursor: pointer; font: 400 15px/1 var(--body); transition: background .15s, color .15s, border-color .15s; }
+.tab i { font: 500 11px/1 var(--mono); font-style: normal; color: var(--muted); }
+.tab:hover { border-color: var(--muted); color: var(--fg); }
+.tab[aria-selected="true"] { background: var(--fg); border-color: var(--fg); color: var(--bg); }
+.tab[aria-selected="true"] i { color: var(--bg); }
+.skill { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 24px clamp(32px, 5vw, 80px); padding: clamp(22px, 3vw, 40px); background: var(--raise); border: 1px solid var(--line); }
+.skill h3 { font: 900 clamp(48px, 6.4vw, 96px)/.88 var(--display); text-transform: uppercase; margin-block: 12px 20px; }
+.skill p { color: var(--soft); max-width: 42ch; }
+.skill ol { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line-strong); counter-reset: s; }
+.skill li { counter-increment: s; display: flex; gap: 16px; align-items: baseline; padding: 15px 0; border-bottom: 1px solid var(--line); font-size: 18px; }
+.skill li::before { content: counter(s, decimal-leading-zero); font: 500 12px/1 var(--mono); color: var(--accent-ink); }
+
+/* Contact */
+.contact { background: var(--accent); color: var(--on-accent); }
+.contact .wrap { padding-block: clamp(64px, 9vw, 128px) clamp(40px, 5vw, 64px); }
+.contact .label { color: color-mix(in srgb, var(--on-accent) 78%, transparent); }
+.contact-top { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.contact h2 { font: 900 clamp(72px, 14vw, 216px)/.84 var(--display); text-transform: uppercase; margin-block: clamp(24px, 4vw, 48px); }
+.contact-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 32px clamp(32px, 5vw, 80px); align-items: end; }
+.contact-grid > p { font-size: clamp(19px, 1.8vw, 24px); line-height: 1.4; max-width: 30ch; }
+.ways { display: grid; border-top: 1.5px solid var(--on-accent); }
+.way { display: grid; grid-template-columns: 110px minmax(0, 1fr) auto; gap: 6px 20px; align-items: center; padding-block: 16px; border-bottom: 1px solid color-mix(in srgb, var(--on-accent) 45%, transparent); }
+.way a.big { font-size: clamp(19px, 2.2vw, 28px); text-decoration: none; overflow-wrap: anywhere; min-width: 0; }
+.way a.big:hover { text-decoration: underline; text-underline-offset: 5px; text-decoration-thickness: 1.5px; }
+.copy { appearance: none; background: none; border: 1px solid var(--on-accent); color: var(--on-accent); min-height: 36px; padding: 0 12px; cursor: pointer; font: 500 11px/1 var(--mono); letter-spacing: .07em; text-transform: uppercase; }
+.copy:hover { background: var(--on-accent); color: var(--accent); }
+.contact :focus-visible { outline-color: var(--on-accent); }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; padding-block: 22px; }
+footer a { text-decoration: none; }
+
+@media (max-width: 900px) {
+  .hero .wrap { grid-template-columns: minmax(0, 1fr); }
+  .portrait { max-width: 520px; }
+  .sec-head, .about-grid, .job, .skill, .contact-grid { grid-template-columns: minmax(0, 1fr); }
+  .sec-head .count { justify-self: start; }
+}
+@media (max-width: 600px) {
+  body { font-size: 16px; }
+  .nav li a i, .nav li.opt { display: none; }
+  .mark b { display: none; }
+  .hero h1 span + span { -webkit-text-stroke-width: 1.5px; }
+  .facts { grid-template-columns: minmax(0, 1fr); }
+  .way { grid-template-columns: minmax(0, 1fr) auto; }
+  .way .label { grid-column: 1 / -1; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="mark" href="#top"><span>DC</span><b>David Castro</b></a>
+    <nav aria-label="Main">
+      <ul>
+        <li class="opt"><a href="#about"><i>01</i>About</a></li>
+        <li><a href="#experience"><i>02</i>Work</a></li>
+        <li><a href="#skills"><i>03</i>Skills</a></li>
+        <li><a href="#contact"><i>04</i>Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <p class="label"><b>&#9679;</b> Founder, Castro Solutions LLC</p>
+        <h1><span>David</span><span>Castro</span></h1>
+        <p class="tagline">Computer Science and Statistics senior at UTRGV, building software, websites and data tools.</p>
+        <dl class="hero-meta">
+          <div>
+            <dt class="label">Based in</dt>
+            <dd>Edinburg, TX<span class="coords">26.30&deg; N, 98.16&deg; W</span></dd>
+          </div>
+          <div>
+            <dt class="label">Currently</dt>
+            <dd><a href="https://castrosolutions.net" target="_blank" rel="noopener">Castro Solutions &#8599;</a><span class="coords">IT consulting</span></dd>
+          </div>
+        </dl>
+        <div class="pills">
+          <a class="pill primary" href="https://castrosolutions.net" target="_blank" rel="noopener">Castro Solutions &#8599;</a>
+          <a class="pill" href="https://www.linkedin.com/in/david-castro-86349a360/" target="_blank" rel="noopener">LinkedIn &#8599;</a>
+          <a class="pill" href="mailto:davidcastrojr28@gmail.com">Email</a>
+        </div>
+      </div>
+      <figure class="portrait">
+        <img src="images/david-cutout.webp" alt="Portrait of David Castro" width="1200" height="1500" fetchpriority="high">
+        <figcaption><span>David Castro</span><span>Edinburg <span id="clock">CT</span></span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="band" id="about">
+    <div class="wrap about-grid">
+      <p class="label"><b>01</b> About me</p>
+      <div>
+        <p class="bio">I'm <strong>David Castro</strong>, a 20-year-old senior at UTRGV majoring in Computer Science and Statistics. My goal is to build solutions that move technology forward and help shape what comes next.</p>
+        <dl class="facts">
+          <div><dt class="label">Based in</dt><dd>Edinburg, TX</dd></div>
+          <div><dt class="label">Studying</dt><dd>UTRGV, Computer Science &amp; Statistics</dd></div>
+          <div><dt class="label">Currently</dt><dd>Founder, Castro Solutions LLC</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="experience">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="label"><b>02</b> Experience</p>
+        <h2>Work</h2>
+      </div>
+      <div class="jobs">
+        <article class="job">
+          <div class="job-when">
+            <p class="label now">Aug 2026 &mdash; Present</p>
+            <span class="tag">IT consulting</span>
+          </div>
+          <div>
+            <h3>Freelance IT Consultant</h3>
+            <p class="org"><a href="https://castrosolutions.net" target="_blank" rel="noopener">Castro Solutions LLC &#8599;</a> &mdash; Edinburg, TX</p>
+            <ul>
+              <li>Own and run Castro Solutions LLC.</li>
+              <li>Offer IT consultations to small businesses and to individual clients one on one.</li>
+            </ul>
+          </div>
+        </article>
+        <article class="job">
+          <div class="job-when">
+            <p class="label now">Feb 2024 &mdash; Present</p>
+            <span class="tag">Sports technology</span>
+          </div>
+          <div>
+            <h3>AI Automated Timing Specialist</h3>
+            <p class="org">Track and field, cross country and swimming events</p>
+            <ul>
+              <li>Set up and operate AI-automated timing systems at track and field, cross country and swimming events.</li>
+              <li>Use AI to help analyze results, so coaches can follow their teams' statistics.</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="skills">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="label"><b>03</b> Skills</p>
+        <h2>Skills</h2>
+      </div>
+      <div class="tabs" role="tablist" aria-label="Skill areas" id="tabs"></div>
+      <div class="skill" role="tabpanel" id="skill-panel" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <div class="contact-top">
+        <p class="label">04 Contact</p>
+        <p class="label">Open to clients and opportunities</p>
+      </div>
+      <h2>Let's build<br>something.</h2>
+      <div class="contact-grid">
+        <p>Need a website, a data tool or help with IT? Reach out and I'll get back to you.</p>
+        <div class="ways">
+          <div class="way">
+            <span class="label">Email</span>
+            <a class="big" href="mailto:davidcastrojr28@gmail.com">davidcastrojr28@gmail.com</a>
+            <button class="copy" type="button" data-copy="davidcastrojr28@gmail.com">Copy</button>
+          </div>
+          <div class="way">
+            <span class="label">Phone</span>
+            <a class="big" href="tel:+19563755921">(956) 375-5921</a>
+            <button class="copy" type="button" data-copy="9563755921">Copy</button>
+          </div>
+          <div class="way">
+            <span class="label">LinkedIn</span>
+            <a class="big" href="https://www.linkedin.com/in/david-castro-86349a360/" target="_blank" rel="noopener">david-castro &#8599;</a>
+            <span></span>
+          </div>
+          <div class="way">
+            <span class="label">Business</span>
+            <a class="big" href="https://castrosolutions.net" target="_blank" rel="noopener">castrosolutions.net &#8599;</a>
+            <span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="label">&copy; <span id="year">2026</span> David Castro</span>
+    <a class="label" href="#top">Back to top &uarr;</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var SKILLS = [
+    { name: 'Software Engineering', text: 'Planning and building programs that are reliable, tested and easy to maintain.',
+      items: ['Problem solving and algorithms', 'Object-oriented programming', 'Testing and debugging', 'Version control with Git'] },
+    { name: 'Web Development', text: 'Designing and launching websites that work well on phones and desktops, like castrosolutions.net.',
+      items: ['Responsive page design', 'HTML, CSS and JavaScript', 'Domains and DNS with Cloudflare', 'Hosting and deployment'] },
+    { name: 'IT Support', text: 'Helping small businesses and individuals keep their technology running.',
+      items: ['Hardware and software troubleshooting', 'Device and account setup', 'Networking basics', 'One-on-one tech consultations'] },
+    { name: 'Data Engineering', text: 'Collecting, cleaning and analyzing data to answer real questions, backed by my statistics coursework.',
+      items: ['Data cleaning and preparation', 'Statistical analysis', 'Results and performance tracking', 'Clear reports for coaches and clients'] }
+  ];
+  var tabsEl = document.getElementById('tabs');
+  var panel = document.getElementById('skill-panel');
+  var buttons = SKILLS.map(function (s, i) {
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'tab'; b.setAttribute('role', 'tab'); b.id = 'skill-tab-' + i;
+    b.setAttribute('aria-controls', 'skill-panel');
+    b.innerHTML = '<i>' + String(i + 1).padStart(2, '0') + '</i>' + s.name;
+    b.addEventListener('click', function () { show(i); });
+    b.addEventListener('keydown', function (e) {
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      var n = (i + (e.key === 'ArrowRight' ? 1 : SKILLS.length - 1)) % SKILLS.length;
+      show(n); buttons[n].focus();
+    });
+    tabsEl.appendChild(b);
+    return b;
+  });
+  function show(i) {
+    var s = SKILLS[i];
+    buttons.forEach(function (b, j) { b.setAttribute('aria-selected', i === j); b.tabIndex = i === j ? 0 : -1; });
+    panel.setAttribute('aria-labelledby', 'skill-tab-' + i);
+    var words = s.name.split(' ');
+    panel.innerHTML = '<div><p class="label"><b>' + String(i + 1).padStart(2, '0') + '</b> / ' + String(SKILLS.length).padStart(2, '0') + '</p>' +
+      '<h3>' + words.join('<br>') + '</h3><p>' + s.text + '</p></div>' +
+      '<ol>' + s.items.map(function (t) { return '<li>' + t + '</li>'; }).join('') + '</ol>';
+  }
+  show(0);
+
+  var clock = document.getElementById('clock');
+  function tick() {
+    try {
+      clock.textContent = new Date().toLocaleTimeString('en-US', { timeZone: 'America/Chicago', hour: 'numeric', minute: '2-digit' }) + ' CT';
+    } catch (e) { clock.textContent = 'CT'; }
+  }
+  tick(); setInterval(tick, 30000);
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  [].forEach.call(document.querySelectorAll('[data-copy]'), function (b) {
+    var original = b.textContent, timer;
+    function flash(t) { b.textContent = t; clearTimeout(timer); timer = setTimeout(function () { b.textContent = original; }, 1800); }
+    b.addEventListener('click', function () {
+      var p = navigator.clipboard && navigator.clipboard.writeText ? navigator.clipboard.writeText(b.dataset.copy) : Promise.reject();
+      p.then(function () { flash('Copied'); }).catch(function () {
+        var r = document.createRange(); r.selectNodeContents(b.parentNode.querySelector('.big'));
+        var sel = getSelection(); sel.removeAllRanges(); sel.addRange(r); flash('Selected');
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>
